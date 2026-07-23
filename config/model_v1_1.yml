@@ -1,0 +1,28 @@
+model_version: pure_early_warning_v1.1
+parent_version: pure_early_warning_v1
+purpose: automotive service churn early-warning research
+population:
+  active_at_scoring_month: true
+  maximum_days_since_last_service: 600
+  qualifying_return_relationships:
+    - home_site
+    - same_network_other_site
+target:
+  name: churn_3m
+  definition: absent in the third month after the scoring month
+  horizon_months: 3
+behavior_window_months: 3
+top_fraction: 0.05
+excluded_model_features:
+  - site_id
+models:
+  champion: static_plus_full_behavior_logistic
+  challenger: static_plus_body_repair_logistic
+  baseline: static_logistic
+reliability:
+  psi_warn: 0.10
+  psi_hold: 0.25
+  p99_ratio_warn: 2.0
+  p99_ratio_hold: 3.0
+  concentration_hold: 3.0
+  segment_selection_rate_hold: 0.20
