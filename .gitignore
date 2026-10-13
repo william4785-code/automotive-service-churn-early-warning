@@ -1,19 +1,51 @@
+# Local configuration and session state
 .env
+.env.*
+!.env.example
+.Renviron
+.Renviron.*
 .Rhistory
 .RData
+.Ruserdata
 .Rproj.user/
 
+# T0 data, models, scores, monitoring, and operational artifacts
 cache/
 models/
 prospective/
 monitoring/
 outputs/
+data/raw/
+data/private/
+logs/
+tmp/
+checkpoints/
 
+# Deny data and model formats by default
 *.rds
 *.rda
 *.RData
+*.csv
+*.tsv
 *.xlsx
 *.xls
-*.csv
+*.parquet
+*.feather
+*.duckdb
+*.sqlite
+*.db
+*.dump
+*.bak
+*.log
+*.pdf
+*.zip
+*.7z
 
+# Only synthetic fixtures written from scratch may be reviewed for exceptions.
 !data/synthetic_example.csv
+
+# Operating-system and tooling artifacts
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
